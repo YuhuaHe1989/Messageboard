@@ -1,0 +1,69 @@
+doctype html
+html(lang="en")
+  head
+    title Message Board
+    link(href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet")
+    link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css' rel='stylesheet')
+    link(href="css/style.css" rel="stylesheet")
+  body
+    .container
+      .headline
+        h1 Message Board
+      .row
+        button.btn.btn-primary(data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap") Create a message
+      table.table.table-bordered
+        thead
+          tr.headtitle
+            th.col-xs-3 Name
+            th.col-xs-5 Message
+            th.col-xs-3 Time
+            th.col-xs-1 Eidt  
+        tbody#list
+          each element in messages
+            tr
+              td.name= element.name
+              td.message= element.message
+              td.time= element.time
+              td: a.edit(href='#' data-toggle="modal" data-target="#myModal" id=element._id): i.fa.fa-pencil-square-o.fa-lg
+
+
+    #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
+          .modal-dialog(role='document')
+            .modal-content
+              .modal-header
+                button#modalWindowClose.close(type='button', data-dismiss='modal', aria-label='Close')
+                  span(aria-hidden='true') ×
+                h4#myModalLabel.modal-title Edit Contact
+              .modal-body
+                | Name:
+                input#modalInputName(type='text')
+              .modal-body
+                | Message:
+                input#modalInputMessage(type='text')
+              .modal-footer
+                button.modalCloseBtn.btn.btn-default(type='button', data-dismiss='modal') Close
+                button.modalSaveBtn.btn.btn-primary(type='button') Save changes
+
+    #exampleModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel')
+      .modal-dialog(role='document')
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+            h4#exampleModalLabel.modal-title New message
+          .modal-body
+            form
+              .form-group
+                label.control-label(for='name') Name:
+                input#name.form-control(type='text')
+              .form-group
+                label.control-label(for='message') Message:
+                textarea#message.form-control
+          .modal-footer
+            button.btn.btn-default(type='button', data-dismiss='modal') Close
+            button.btn.btn-primary.save(type='button') Save 
+
+
+    script(src='bower_components/jquery/dist/jquery.min.js')
+    script(src="bower_components/bootstrap/dist/js/bootstrap.min.js")
+    script(src='js/main.js')

@@ -5,6 +5,9 @@ var PORT = process.env.PORT || 3000;
 var express = require('express');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
+var mongoose = require('mongoose');
+
+mongoose.connect("mongodb://localhost/messageboard");
 
 var app = express();
 
@@ -18,6 +21,7 @@ app.use(express.static('public'));
 
 // ROUTES
 app.use('/', require('./routes/index'));
+app.use('/messageboard', require('./routes/messageboard'));
 
 // 404 HANDLER
 app.use(function(req, res){
