@@ -24,10 +24,14 @@ function modalUpdate(){
   if($modalName !== ''){
     edit.name = $modalName;
     edit.time = time;
+    $('#sample:nth-child('+(editIndex + 1)+')').find('.name').text($modalName);
+    $('#sample:nth-child('+(editIndex + 1)+')').find('.time').text(time);
   }
   if($modalMessage !== ''){
     edit.message = $modalMessage;
     edit.time = time;
+    $('#sample:nth-child('+(editIndex + 1)+')').find('.message').text($modalMessage);
+    $('#sample:nth-child('+(editIndex + 1)+')').find('.time').text(time);
   }
 
   $.post('/messageboard/edit',{edit: edit})
