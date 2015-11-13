@@ -28,7 +28,7 @@ router.post('/', function(req, res) {
 router.post('/edit', function(req, res) {
   var revise = req.body.edit;
 
-  message.update({time:revise.time},revise, function(err, messages){
+  message.update({time:revise.origtime},revise, function(err, messages){
     if(err) console.log("OH NO AN ERROR: ", err);
 
     res.send(messages);

@@ -19,13 +19,15 @@ function modalUpdate(){
   var time = new Date().toUTCString();
 
   var edit= {};
-  edit.time = origTime;
+  edit.origtime = origTime;
 
   if($modalName !== ''){
     edit.name = $modalName;
+    edit.time = time;
   }
   if($modalMessage !== ''){
     edit.message = $modalMessage;
+    edit.time = time;
   }
 
   $.post('/messageboard/edit',{edit: edit})
