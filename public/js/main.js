@@ -61,7 +61,8 @@ function saveMessage(){
 
   $.post('/messageboard',{data: data})
    .done(function(data){
-       console.log(data);
+      createRow(data);
+      console.log(data);
     })
    .fail(function(err){
        console.log(err);
@@ -73,14 +74,20 @@ function saveMessage(){
 }
 
 function createRow(data){
-  var $tr = $('<tr>');
-  var $name = $('<td>').text(data.name);
-  var $message = $('<td>').text(data.message);
-  var $time = $('<td>').text(data.time);
+  var $tr = $('#sample').clone();
 
-  $tr.append($name,$message,$time);
+  $tr.find('.name').text(data.name);
+  $tr.find('.message').text(data.message);
+  $tr.find('.time').text(data.time);
+
   $('#list').append($tr);
+  // var $tr = $('<tr>');
+  // var $name = $('<td>').text(data.name);
+  // var $message = $('<td>').text(data.message);
+  // var $time = $('<td>').text(data.time);
 
+  // $tr.append($name,$message,$time);
+  // $('#list').append($tr);
 }
 
 
